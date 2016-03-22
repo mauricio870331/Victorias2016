@@ -9,6 +9,8 @@ import App.Principal;
 import Model.HabitacionesDAO;
 
 import Model.ReservasDAO;
+import Model.UsuariosDAO;
+import Utils.TooltipJTable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +28,7 @@ public class ReservasController {
     HabitacionesDAO haDao = new HabitacionesDAO();
     ReservasDAO reseDAO = new ReservasDAO();
     DefaultTableModel modelo = new DefaultTableModel();
+    UsuariosDAO userDao = new UsuariosDAO();
     Principal pr = new Principal();
 
     public void cargarReservas(JTable tbReserevas) {
@@ -107,7 +110,9 @@ public class ReservasController {
                     for (int k = 1; k <= days; k++) {
                         if (k >= fllegada && k <= fsalida) {
                             if (fllegada == k) {
-                                columna[k] = reseDAO.getListReservas().get(j).getIdUsuario();
+                                String nombre = userDao.getInfoUsuario(reseDAO.getListReservas().get(j).getIdUsuario()).get(0).getNombres();
+                                columna[k] = nombre;
+                                
                             } else {
                                 columna[k] = "X";
                             }
@@ -120,6 +125,7 @@ public class ReservasController {
         }
         tbReserevas.setModel(modelo);
         tbReserevas.getColumnModel().getColumn(0).setPreferredWidth(200);
+        tbReserevas.setDefaultRenderer(Object.class, new TooltipJTable());
 
     }
 

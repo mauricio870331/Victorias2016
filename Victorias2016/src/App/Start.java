@@ -31,6 +31,7 @@ public class Start {
             pr.setLocationRelativeTo(null);
             pr.setVisible(true);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            System.out.println("error "+e);
         }
 
     }
