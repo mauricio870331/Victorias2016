@@ -38,6 +38,7 @@ public class Principal extends javax.swing.JFrame {
         pnCreateAdmin = new javax.swing.JPanel();
         jpnViewReservas = new javax.swing.JScrollPane();
         tbViewReservas = new javax.swing.JTable();
+        lbltooltip = new javax.swing.JLabel();
         pnListAdmin = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -77,6 +78,9 @@ public class Principal extends javax.swing.JFrame {
         tbViewReservas.setShowVerticalLines(false);
         jpnViewReservas.setViewportView(tbViewReservas);
 
+        lbltooltip.setBackground(new java.awt.Color(255, 153, 0));
+        lbltooltip.setOpaque(true);
+
         javax.swing.GroupLayout pnCreateAdminLayout = new javax.swing.GroupLayout(pnCreateAdmin);
         pnCreateAdmin.setLayout(pnCreateAdminLayout);
         pnCreateAdminLayout.setHorizontalGroup(
@@ -85,13 +89,19 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jpnViewReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnCreateAdminLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(lbltooltip, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(985, Short.MAX_VALUE))
         );
         pnCreateAdminLayout.setVerticalGroup(
             pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCreateAdminLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jpnViewReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbltooltip, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnListAdminLayout = new javax.swing.GroupLayout(pnListAdmin);
@@ -308,6 +318,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JLabel lblIdAdminUpdate;
     public javax.swing.JLabel lblImagenAdmin;
     public javax.swing.JLabel lblNombres;
+    public javax.swing.JLabel lbltooltip;
     public javax.swing.JMenuItem mnuDeleteAdmin;
     public javax.swing.JMenuItem mnuUpdateAdmin;
     public javax.swing.JPanel pnCreateAdmin;

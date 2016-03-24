@@ -8,6 +8,7 @@ package Model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -27,22 +28,23 @@ public class UsuariosDAO {
         cn = conexion.getConexion();
     }
 
-    public ArrayList<Usuarios> getInfoUsuario(int id) {
-
+    public ArrayList<Usuarios> getInfoUsuario(String id) {
         ArrayList listInfoUsuario = new ArrayList();
         Usuarios usuario;
         try {
-            sql = "SELECT nombres, apellidos FROM usuarios where id_usuario = ?";
+            sql = "SELECT * FROM usuarios where id_usuario = ?";
             pstm = cn.prepareStatement(sql);
-            pstm.setInt(1, id);
+            pstm.setInt(1, Integer.parseInt(id));
             rs = pstm.executeQuery();
             while (rs.next()) {
                 usuario = new Usuarios();
+                usuario.setDocumento(rs.getString("documento"));
                 usuario.setNombres(rs.getString("nombres"));
                 usuario.setApellidos(rs.getString("apellidos"));
+                usuario.setIdUsuario(rs.getInt("id_usuario"));
                 listInfoUsuario.add(usuario);
             }
-        } catch (Exception e) {
+        } catch (SQLException | NumberFormatException e) {
             System.out.println("error" + e + " " + getClass());
         }
         return listInfoUsuario;

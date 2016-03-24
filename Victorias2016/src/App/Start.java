@@ -9,6 +9,10 @@ package App;
 
 import Controllers.ReservasController;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Properties;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -25,13 +29,14 @@ public class Start {
             props.put("logoString", "M-Systems");
             AcrylLookAndFeel.setCurrentTheme(props);
             UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-            ReservasController rc = new ReservasController();
-            Principal pr = new Principal();            
+            Principal pr = new Principal();
+            ReservasController rc = new ReservasController(pr);            
             rc.cargarReservas(pr.tbViewReservas);
+            pr.lbltooltip.setVisible(false);           
             pr.setLocationRelativeTo(null);
             pr.setVisible(true);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            System.out.println("error "+e);
+            System.out.println("error " + e);
         }
 
     }

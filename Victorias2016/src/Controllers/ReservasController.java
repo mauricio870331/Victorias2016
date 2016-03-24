@@ -5,12 +5,17 @@
  */
 package Controllers;
 
+import App.NewJDialog;
 import App.Principal;
 import Model.HabitacionesDAO;
 
 import Model.ReservasDAO;
 import Model.UsuariosDAO;
 import Utils.TooltipJTable;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,13 +28,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Mauricio Herrera
  */
-public class ReservasController {
+public class ReservasController implements MouseListener {
 
     HabitacionesDAO haDao = new HabitacionesDAO();
     ReservasDAO reseDAO = new ReservasDAO();
     DefaultTableModel modelo = new DefaultTableModel();
     UsuariosDAO userDao = new UsuariosDAO();
     Principal pr = new Principal();
+
+    public ReservasController(Principal pr) {
+        this.pr = pr;
+        this.pr.tbViewReservas.addMouseListener(this);
+    }
 
     public void cargarReservas(JTable tbReserevas) {
         Date now = new Date(); // java.util.Date, NOT java.sql.Date or java.sql.Timestamp!
@@ -109,13 +119,7 @@ public class ReservasController {
 
                     for (int k = 1; k <= days; k++) {
                         if (k >= fllegada && k <= fsalida) {
-                            if (fllegada == k) {
-                                String nombre = userDao.getInfoUsuario(reseDAO.getListReservas().get(j).getIdUsuario()).get(0).getNombres();
-                                columna[k] = nombre;
-                                
-                            } else {
-                                columna[k] = "X";
-                            }
+                            columna[k] = reseDAO.getListReservas().get(j).getIdUsuario();
                         }
                     }
                 }
@@ -126,6 +130,51 @@ public class ReservasController {
         tbReserevas.setModel(modelo);
         tbReserevas.getColumnModel().getColumn(0).setPreferredWidth(200);
         tbReserevas.setDefaultRenderer(Object.class, new TooltipJTable());
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int fila = pr.tbViewReservas.rowAtPoint(e.getPoint());
+        int columna = pr.tbViewReservas.columnAtPoint(e.getPoint());
+        if ((fila > -1) && (columna > 0)) {
+            String id = "";
+            Point punto = MouseInfo.getPointerInfo().getLocation();
+            int x = punto.x;
+            int y = punto.y;
+            if (x > 1200) {
+                x = 1200;
+            }
+            if (pr.tbViewReservas.getValueAt(fila, columna) != null) {
+                id = String.valueOf(pr.tbViewReservas.getValueAt(fila, columna));
+            }           
+            if (!id.equals("")) {
+                String documento = userDao.getInfoUsuario(id).get(0).getDocumento();
+                String Nombres = userDao.getInfoUsuario(id).get(0).getNombres();
+                NewJDialog tt = new NewJDialog(null, true);
+                System.out.println("x =" + x);
+                tt.jLabel1.setText(documento);
+                tt.jLabel2.setText(Nombres);
+                tt.setLocation(x, y);
+                tt.setVisible(true);
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 

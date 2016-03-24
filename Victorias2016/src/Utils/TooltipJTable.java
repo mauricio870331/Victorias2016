@@ -1,5 +1,6 @@
 package Utils;
 
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -17,7 +18,6 @@ public class TooltipJTable extends DefaultTableCellRenderer {
 //    String sql;
 //    ResultSet rs;
 //    UsuariosDAO userDao = new UsuariosDAO();
-
     public TooltipJTable() {
 //        conexion = new Conexion();
 //        cn = conexion.getConexion();
@@ -26,12 +26,21 @@ public class TooltipJTable extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
             int row, int colum) {
         JLabel cell = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colum);
-        if (hasFocus && colum > 0) {
-            System.out.println(cell.getText());
+//        int filas = table.getRowCount();
+//        int columnas = table.getColumnCount();
+        if (colum > 0) {
+            if (table.getValueAt(row, colum) != null) {   
+                Color c = new Color(152,251,152);
+                    cell.setBackground(c);
+                    cell.setForeground(c); 
+                    
+            } else {
+                setBackground(null);
+                cell.setForeground(Color.BLACK);
+            }
         }
+
         return cell;
     }
-    
-    
-    
+
 }
