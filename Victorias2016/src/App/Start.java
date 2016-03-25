@@ -9,10 +9,6 @@ package App;
 
 import Controllers.ReservasController;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Properties;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;

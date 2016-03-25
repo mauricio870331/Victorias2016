@@ -142,8 +142,8 @@ public class ReservasController implements MouseListener {
             Point punto = MouseInfo.getPointerInfo().getLocation();
             int x = punto.x;
             int y = punto.y;
-            if (x > 1200) {
-                x = 1200;
+            if (x > 1190) {
+                x = 1180;
             }
             if (pr.tbViewReservas.getValueAt(fila, columna) != null) {
                 id = String.valueOf(pr.tbViewReservas.getValueAt(fila, columna));

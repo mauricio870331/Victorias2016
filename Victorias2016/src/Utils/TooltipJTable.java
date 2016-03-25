@@ -28,15 +28,14 @@ public class TooltipJTable extends DefaultTableCellRenderer {
         JLabel cell = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colum);
 //        int filas = table.getRowCount();
 //        int columnas = table.getColumnCount();
-        if (colum > 0) {
+        if (colum >=1 ) {
             if (table.getValueAt(row, colum) != null) {   
                 Color c = new Color(152,251,152);
                     cell.setBackground(c);
-                    cell.setForeground(c); 
-                    
+                    cell.setForeground(c);                     
             } else {
                 setBackground(null);
-                cell.setForeground(Color.BLACK);
+                
             }
         }
 

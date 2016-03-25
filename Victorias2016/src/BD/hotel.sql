@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2016 a las 16:44:16
+-- Tiempo de generación: 25-03-2016 a las 02:12:56
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 7.0.2
 
@@ -98,6 +98,14 @@ CREATE TABLE `habitaciones` (
   `disponibilidad` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `habitaciones`
+--
+
+INSERT INTO `habitaciones` (`id_habitacion`, `habitacion`, `id_tipo_habitacion`, `disponibilidad`) VALUES
+(1, '001', 1, 0),
+(2, '002', 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +116,13 @@ CREATE TABLE `nacionalidades` (
   `id_nacionalidad` int(11) NOT NULL,
   `nacionalidad` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `nacionalidades`
+--
+
+INSERT INTO `nacionalidades` (`id_nacionalidad`, `nacionalidad`) VALUES
+(1, 'Colombia');
 
 -- --------------------------------------------------------
 
@@ -149,6 +164,13 @@ CREATE TABLE `reservas_habitaciones` (
   `personas` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `reservas_habitaciones`
+--
+
+INSERT INTO `reservas_habitaciones` (`id_reserva`, `id_habitacion`, `fecha_llegada`, `fecha_salida`, `id_usuario`, `estado_reserva`, `personas`) VALUES
+(1, 2, '2016-03-23', '2016-03-30', 1, 'completa', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -174,6 +196,13 @@ CREATE TABLE `roles` (
   `rol` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id_rol`, `rol`) VALUES
+(1, 'cliente');
+
 -- --------------------------------------------------------
 
 --
@@ -198,6 +227,14 @@ CREATE TABLE `tipos_habitaciones` (
   `tipo_habitacion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipos_habitaciones`
+--
+
+INSERT INTO `tipos_habitaciones` (`id_tipo_habitacion`, `tipo_habitacion`) VALUES
+(1, 'Sencilla'),
+(2, 'Cabaña');
+
 -- --------------------------------------------------------
 
 --
@@ -220,6 +257,13 @@ CREATE TABLE `usuarios` (
   `id_rol` int(11) NOT NULL,
   `id_nacionalidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `tipo_documento`, `documento`, `nombres`, `apellidos`, `fecha_nacimiento`, `direccion`, `telefono`, `correo`, `password`, `iva`, `retefuente`, `id_rol`, `id_nacionalidad`) VALUES
+(1, 'Cedula', '1113626301', 'mauricio', 'herrera', '1987-03-31', NULL, NULL, NULL, '123465', 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -365,12 +409,12 @@ ALTER TABLE `factura`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id_habitacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_habitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `nacionalidades`
 --
 ALTER TABLE `nacionalidades`
-  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `ordenes_servicio`
 --
@@ -385,7 +429,7 @@ ALTER TABLE `registro_ingresos`
 -- AUTO_INCREMENT de la tabla `reservas_habitaciones`
 --
 ALTER TABLE `reservas_habitaciones`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `resoluciones_dian`
 --
@@ -395,7 +439,7 @@ ALTER TABLE `resoluciones_dian`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
@@ -405,12 +449,12 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `tipos_habitaciones`
 --
 ALTER TABLE `tipos_habitaciones`
-  MODIFY `id_tipo_habitacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipo_habitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `versiones`
 --
