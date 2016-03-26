@@ -38,8 +38,8 @@ public class Principal extends javax.swing.JFrame {
         pnCreateAdmin = new javax.swing.JPanel();
         jpnViewReservas = new javax.swing.JScrollPane();
         tbViewReservas = new javax.swing.JTable();
-        lbltooltip = new javax.swing.JLabel();
-        pnListAdmin = new javax.swing.JPanel();
+        btnNextMonth = new javax.swing.JButton();
+        lblMes = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -66,6 +66,10 @@ public class Principal extends javax.swing.JFrame {
         container.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         container.setPreferredSize(new java.awt.Dimension(912, 469));
 
+        pnCreateAdmin.setAutoscrolls(true);
+
+        jpnViewReservas.setAutoscrolls(true);
+
         tbViewReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -78,8 +82,7 @@ public class Principal extends javax.swing.JFrame {
         tbViewReservas.setShowVerticalLines(false);
         jpnViewReservas.setViewportView(tbViewReservas);
 
-        lbltooltip.setBackground(new java.awt.Color(255, 153, 0));
-        lbltooltip.setOpaque(true);
+        btnNextMonth.setText(">");
 
         javax.swing.GroupLayout pnCreateAdminLayout = new javax.swing.GroupLayout(pnCreateAdmin);
         pnCreateAdmin.setLayout(pnCreateAdminLayout);
@@ -87,41 +90,35 @@ public class Principal extends javax.swing.JFrame {
             pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCreateAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpnViewReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
+                .addGroup(pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpnViewReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
+                    .addGroup(pnCreateAdminLayout.createSequentialGroup()
+                        .addComponent(btnNextMonth)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 967, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(pnCreateAdminLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(lbltooltip, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(985, Short.MAX_VALUE))
         );
         pnCreateAdminLayout.setVerticalGroup(
             pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCreateAdminLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addGroup(pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnNextMonth)
+                    .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
                 .addComponent(jpnViewReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbltooltip, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pnListAdminLayout = new javax.swing.GroupLayout(pnListAdmin);
-        pnListAdmin.setLayout(pnListAdminLayout);
-        pnListAdminLayout.setHorizontalGroup(
-            pnListAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 908, Short.MAX_VALUE)
-        );
-        pnListAdminLayout.setVerticalGroup(
-            pnListAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
-        );
+        container.setLayer(pnCreateAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        container.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnListAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 1142, Short.MAX_VALUE)
             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCreateAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,15 +128,10 @@ public class Principal extends javax.swing.JFrame {
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 475, Short.MAX_VALUE)
             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnListAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCreateAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
         );
-        container.setLayer(pnCreateAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        container.setLayer(pnListAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        container.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
@@ -303,6 +295,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPopupMenu PopupAdmin;
+    public javax.swing.JButton btnNextMonth;
     public javax.swing.JLayeredPane container;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
@@ -317,12 +310,11 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JLabel lblIdAdminLogin;
     public javax.swing.JLabel lblIdAdminUpdate;
     public javax.swing.JLabel lblImagenAdmin;
+    public javax.swing.JLabel lblMes;
     public javax.swing.JLabel lblNombres;
-    public javax.swing.JLabel lbltooltip;
     public javax.swing.JMenuItem mnuDeleteAdmin;
     public javax.swing.JMenuItem mnuUpdateAdmin;
     public javax.swing.JPanel pnCreateAdmin;
-    public javax.swing.JPanel pnListAdmin;
     public javax.swing.JTable tbViewReservas;
     // End of variables declaration//GEN-END:variables
 }

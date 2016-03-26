@@ -23,22 +23,38 @@ public class TooltipJTable extends DefaultTableCellRenderer {
 //        cn = conexion.getConexion();
     }
 
+    @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
             int row, int colum) {
         JLabel cell = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colum);
 //        int filas = table.getRowCount();
 //        int columnas = table.getColumnCount();
-        if (colum >=1 ) {
-            if (table.getValueAt(row, colum) != null) {   
-                Color c = new Color(152,251,152);
-                    cell.setBackground(c);
-                    cell.setForeground(c);                     
-            } else {
-                setBackground(null);
-                
-            }
+//            table.getTableHeader().setBackground(Color.cyan);
+        if (colum == 0) {
+            cell.setForeground(Color.BLACK);
+            cell.setBackground(null);
+        } else if (value != null) {
+            Color c = new Color(50, 205, 50);
+            cell.setBackground(c);
+            cell.setForeground(c);
+        } else if (isSelected) {
+            Color c = new Color(211,211,211);
+            cell.setBackground(c);
+        } else {
+            cell.setBackground(null);
         }
 
+//        if (colum > 0) {
+//            if (value instanceof Integer) {
+//                Color c = new Color(152, 251, 152);
+//                cell.setBackground(c);
+//                cell.setForeground(c);
+//            }
+//            if (value == null) {
+//                cell.setBackground(null);
+//                cell.setForeground(Color.BLACK);
+//            }
+//        }
         return cell;
     }
 

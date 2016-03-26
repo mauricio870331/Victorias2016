@@ -28,7 +28,6 @@ public class Start {
             Principal pr = new Principal();
             ReservasController rc = new ReservasController(pr);            
             rc.cargarReservas(pr.tbViewReservas);
-            pr.lbltooltip.setVisible(false);           
             pr.setLocationRelativeTo(null);
             pr.setVisible(true);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
