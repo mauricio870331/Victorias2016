@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2016 a las 02:12:56
+-- Tiempo de generación: 27-03-2016 a las 23:04:42
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 7.0.2
 
@@ -104,7 +104,8 @@ CREATE TABLE `habitaciones` (
 
 INSERT INTO `habitaciones` (`id_habitacion`, `habitacion`, `id_tipo_habitacion`, `disponibilidad`) VALUES
 (1, '001', 1, 0),
-(2, '002', 2, 1);
+(2, '002', 2, 1),
+(3, '003', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -169,7 +170,9 @@ CREATE TABLE `reservas_habitaciones` (
 --
 
 INSERT INTO `reservas_habitaciones` (`id_reserva`, `id_habitacion`, `fecha_llegada`, `fecha_salida`, `id_usuario`, `estado_reserva`, `personas`) VALUES
-(1, 2, '2016-03-23', '2016-03-30', 1, 'completa', 2);
+(1, 2, '2016-03-23', '2016-04-04', 1, 'completa', 2),
+(2, 1, '2016-03-01', '2016-03-15', 2, 'Prueba', 3),
+(3, 3, '2016-03-01', '2016-03-05', 2, 'ok', 4);
 
 -- --------------------------------------------------------
 
@@ -263,7 +266,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `tipo_documento`, `documento`, `nombres`, `apellidos`, `fecha_nacimiento`, `direccion`, `telefono`, `correo`, `password`, `iva`, `retefuente`, `id_rol`, `id_nacionalidad`) VALUES
-(1, 'Cedula', '1113626301', 'mauricio', 'herrera', '1987-03-31', NULL, NULL, NULL, '123465', 0, 0, 1, 1);
+(1, 'Cedula', '1113626301', 'mauricio', 'herrera', '1987-03-31', NULL, NULL, NULL, '123465', 0, 0, 1, 1),
+(2, 'cc', '333333333', 'dfdsgfdsg', 'dfhdshdhf', '2015-11-10', NULL, NULL, NULL, 'fghfgj', 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +413,7 @@ ALTER TABLE `factura`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id_habitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_habitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `nacionalidades`
 --
@@ -429,7 +433,7 @@ ALTER TABLE `registro_ingresos`
 -- AUTO_INCREMENT de la tabla `reservas_habitaciones`
 --
 ALTER TABLE `reservas_habitaciones`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `resoluciones_dian`
 --
@@ -454,7 +458,7 @@ ALTER TABLE `tipos_habitaciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `versiones`
 --
