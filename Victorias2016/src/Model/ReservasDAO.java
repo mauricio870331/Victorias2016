@@ -8,7 +8,9 @@ package Model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -27,14 +29,20 @@ public class ReservasDAO {
         cn = conexion.getConexion();
     }
 
-    public ArrayList<Reservas> getListReservas() {
-
+    public ArrayList<Reservas> getListReservas(int mes) {
+        Date now = new Date(); // java.util.Date, NOT java.sql.Date or java.sql.Timestamp!
+        String month = new SimpleDateFormat("MM").format(now);
+        int mn = Integer.parseInt(month);
         ArrayList listaReservas = new ArrayList();
         Reservas reservas;
         try {
-
-            sql = "SELECT * FROM reservas_habitaciones";
-
+            if (mes > mn) {
+                sql = "SELECT * FROM reservas_habitaciones WHERE   MONTH(fecha_salida) >= " + mes + "";
+            } else if (mes < mn) {
+                sql = "SELECT * FROM reservas_habitaciones WHERE  MONTH(fecha_llegada) <= " + mes + "";
+            } else {
+                sql = "SELECT * FROM reservas_habitaciones";
+            }
             pstm = cn.prepareStatement(sql);
             rs = pstm.executeQuery();
             while (rs.next()) {
@@ -49,7 +57,7 @@ public class ReservasDAO {
                 listaReservas.add(reservas);
             }
         } catch (Exception e) {
-            System.out.println("error" + e +" "+getClass());
+            System.out.println("error" + e + " " + getClass());
         }
         return listaReservas;
 

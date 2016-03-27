@@ -40,7 +40,8 @@ public class Principal extends javax.swing.JFrame {
         tbViewReservas = new javax.swing.JTable();
         btnNextMonth = new javax.swing.JButton();
         lblMes = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        btnBeforeMont = new javax.swing.JButton();
+        lblYear = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         lblNombres = new javax.swing.JLabel();
@@ -84,6 +85,8 @@ public class Principal extends javax.swing.JFrame {
 
         btnNextMonth.setText(">");
 
+        btnBeforeMont.setText("<");
+
         javax.swing.GroupLayout pnCreateAdminLayout = new javax.swing.GroupLayout(pnCreateAdmin);
         pnCreateAdmin.setLayout(pnCreateAdminLayout);
         pnCreateAdminLayout.setHorizontalGroup(
@@ -93,26 +96,32 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpnViewReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
                     .addGroup(pnCreateAdminLayout.createSequentialGroup()
+                        .addComponent(btnBeforeMont)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNextMonth)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 967, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblYear, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 808, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnCreateAdminLayout.setVerticalGroup(
             pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCreateAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNextMonth)
-                    .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
+                .addGroup(pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnCreateAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNextMonth)
+                        .addComponent(btnBeforeMont))
+                    .addComponent(lblMes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .addComponent(lblYear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnViewReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         container.setLayer(pnCreateAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        container.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
@@ -121,16 +130,12 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 1142, Short.MAX_VALUE)
             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCreateAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 475, Short.MAX_VALUE)
             .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCreateAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -295,9 +300,9 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPopupMenu PopupAdmin;
+    public javax.swing.JButton btnBeforeMont;
     public javax.swing.JButton btnNextMonth;
     public javax.swing.JLayeredPane container;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -312,6 +317,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JLabel lblImagenAdmin;
     public javax.swing.JLabel lblMes;
     public javax.swing.JLabel lblNombres;
+    public javax.swing.JLabel lblYear;
     public javax.swing.JMenuItem mnuDeleteAdmin;
     public javax.swing.JMenuItem mnuUpdateAdmin;
     public javax.swing.JPanel pnCreateAdmin;

@@ -35,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 public class ReservasController implements ActionListener, MouseListener {
 
     int m = 0;
+    int y = 0;
     HabitacionesDAO haDao = new HabitacionesDAO();
     ReservasDAO reseDAO = new ReservasDAO();
     DefaultTableModel modelo = new DefaultTableModel();
@@ -45,67 +46,84 @@ public class ReservasController implements ActionListener, MouseListener {
         this.pr = pr;
         this.pr.tbViewReservas.addMouseListener(this);
         this.pr.btnNextMonth.addActionListener(this);
+        this.pr.btnBeforeMont.addActionListener(this);
     }
 
     public void cargarReservas(JTable tbReserevas) {
         Date now = new Date(); // java.util.Date, NOT java.sql.Date or java.sql.Timestamp!
         String year = new SimpleDateFormat("yyyy").format(now);
         String month = new SimpleDateFormat("MM").format(now);
+        int ye = Integer.parseInt(year);
         int mn = Integer.parseInt(month);
         int mes = mn + m;
         String day = new SimpleDateFormat("dd").format(now);
         String mesActual = "";
+        if (mes > 11) {
+//            ye++;
+//            m=0;
+//            mes = 1;   
+            pr.btnNextMonth.setEnabled(false);
+
+        } else {
+            pr.btnNextMonth.setEnabled(true);
+        }
+        if (mes < 2) {
+            pr.btnBeforeMont.setEnabled(false);
+        } else {
+            pr.btnBeforeMont.setEnabled(true);
+        }
         Calendar cal = null;
         switch (mes) {
             case 1:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.JANUARY, 1);
+                cal = new GregorianCalendar(ye, Calendar.JANUARY, 1);
                 mesActual = "Enero";
                 break;
             case 2:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.FEBRUARY, 1);
+                cal = new GregorianCalendar(ye, Calendar.FEBRUARY, 1);
                 mesActual = "Febrero";
                 break;
             case 3:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.MARCH, 1);
+                cal = new GregorianCalendar(ye, Calendar.MARCH, 1);
                 mesActual = "Marzo";
                 break;
             case 4:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.APRIL, 1);
+                cal = new GregorianCalendar(ye, Calendar.APRIL, 1);
                 mesActual = "Abril";
                 break;
             case 5:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.MAY, 1);
+                cal = new GregorianCalendar(ye, Calendar.MAY, 1);
                 mesActual = "Mayo";
                 break;
             case 6:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.JUNE, 1);
+                cal = new GregorianCalendar(ye, Calendar.JUNE, 1);
                 mesActual = "Junio";
                 break;
             case 7:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.JULY, 1);
+                cal = new GregorianCalendar(ye, Calendar.JULY, 1);
                 mesActual = "Julio";
                 break;
             case 8:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.AUGUST, 1);
+                cal = new GregorianCalendar(ye, Calendar.AUGUST, 1);
                 mesActual = "Agosto";
                 break;
             case 9:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.SEPTEMBER, 1);
+                cal = new GregorianCalendar(ye, Calendar.SEPTEMBER, 1);
                 mesActual = "Septiembre";
                 break;
             case 10:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.OCTOBER, 1);
+                cal = new GregorianCalendar(ye, Calendar.OCTOBER, 1);
                 mesActual = "Octubre";
                 break;
             case 11:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.NOVEMBER, 1);
+                cal = new GregorianCalendar(ye, Calendar.NOVEMBER, 1);
                 mesActual = "Noviembre";
                 break;
             case 12:
-                cal = new GregorianCalendar(Integer.parseInt(year), Calendar.DECEMBER, 1);
+                cal = new GregorianCalendar(ye, Calendar.DECEMBER, 1);
                 mesActual = "Diciembre";
                 break;
         }
+        pr.lblYear.setText(Integer.toString(ye));
         pr.lblMes.setText(mesActual);
         // Get the number of days in that month 
         int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH); // int numero de dias        
@@ -122,20 +140,19 @@ public class ReservasController implements ActionListener, MouseListener {
         };
         Object[] columna = new Object[days + 1];
         int numRows = haDao.getListHabitaciones().size();
-        int numRows2 = reseDAO.getListReservas().size();
+        int numRows2 = reseDAO.getListReservas(mes).size();
         for (int i = 0; i < numRows; i++) {
             String[] dfs = null;
             String[] dfll = null;
             columna[0] = haDao.getListHabitaciones().get(i).getHabitacion();
 
             for (int j = 0; j < numRows2; j++) {
-                int idhabibitacionR = reseDAO.getListReservas().get(j).getIdHabitacion();
+                int idhabibitacionR = reseDAO.getListReservas(mes).get(j).getIdHabitacion();
                 int idHabitacionH = haDao.getListHabitaciones().get(i).getIdHabitacion();
                 if (idhabibitacionR == idHabitacionH) {
-
-                    String fechaSalida = reseDAO.getListReservas().get(j).getFechaSalida();
+                    String fechaSalida = reseDAO.getListReservas(mes).get(j).getFechaSalida();
                     dfs = fechaSalida.split("-");
-                    String fechaLlegada = reseDAO.getListReservas().get(j).getFechaLLegada();
+                    String fechaLlegada = reseDAO.getListReservas(mes).get(j).getFechaLLegada();
                     dfll = fechaLlegada.split("-");
                     int fllegadaDia = Integer.parseInt(dfll[2]);
                     int fllegadaMes = Integer.parseInt(dfll[1]);
@@ -144,21 +161,21 @@ public class ReservasController implements ActionListener, MouseListener {
                     for (int k = 1; k <= days; k++) {
                         if (fllegadaMes == mes) {    //validacion para saber cuantos dias y mes que esta reservada una habitacion                      
                             if (k >= fllegadaDia && k <= fsalidaDIa) {
-                                columna[k] = reseDAO.getListReservas().get(j).getIdUsuario();
+                                columna[k] = reseDAO.getListReservas(mes).get(j).getIdUsuario();
                             } else {
                                 columna[k] = null;
                             }
                         }
-                        if (fllegadaMes < fsalidaMes) {                            
+                        if (fllegadaMes < fsalidaMes) {
                             if (k >= fllegadaDia && k <= days) {
-                                columna[k] = reseDAO.getListReservas().get(j).getIdUsuario();
+                                columna[k] = reseDAO.getListReservas(mes).get(j).getIdUsuario();
                             } else {
                                 columna[k] = null;
                             }
                         }
-                        if (fsalidaMes == mes) {                            
+                        if (fsalidaMes == mes) {
                             if (k <= fsalidaDIa && k <= days) {
-                                columna[k] = reseDAO.getListReservas().get(j).getIdUsuario();
+                                columna[k] = reseDAO.getListReservas(mes).get(j).getIdUsuario();
                             } else {
                                 columna[k] = null;
                             }
@@ -166,7 +183,6 @@ public class ReservasController implements ActionListener, MouseListener {
                     }
                 }
             }
-
             modelo.addRow(columna);
         }
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
@@ -229,6 +245,12 @@ public class ReservasController implements ActionListener, MouseListener {
         if (e.getSource() == pr.btnNextMonth) {
             m = m + 1;
             cargarReservas(pr.tbViewReservas);
+
+        }
+        if (e.getSource() == pr.btnBeforeMont) {
+            m = m - 1;
+            cargarReservas(pr.tbViewReservas);
+
         }
     }
 }
