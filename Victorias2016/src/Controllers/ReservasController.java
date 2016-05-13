@@ -73,6 +73,8 @@ public class ReservasController implements ActionListener, MouseListener {
             pr.btnBeforeMont.setEnabled(true);
         }
         Calendar cal = null;
+//        Period p = null;
+//        p.
         switch (mes) {
             case 1:
                 cal = new GregorianCalendar(ye, Calendar.JANUARY, 1);
@@ -165,7 +167,7 @@ public class ReservasController implements ActionListener, MouseListener {
                             } else {
                                 columna[k] = null;
                             }
-                        }
+                        }                        
                         if (fllegadaMes < fsalidaMes) {
                             if (k >= fllegadaDia && k <= days) {
                                 columna[k] = reseDAO.getListReservas(mes).get(j).getIdUsuario();
@@ -174,12 +176,14 @@ public class ReservasController implements ActionListener, MouseListener {
                             }
                         }
                         if (fsalidaMes == mes) {
+                            System.out.println("hola");
                             if (k <= fsalidaDIa && k <= days) {
                                 columna[k] = reseDAO.getListReservas(mes).get(j).getIdUsuario();
                             } else {
                                 columna[k] = null;
                             }
                         }
+                        
                     }
                 }
             }

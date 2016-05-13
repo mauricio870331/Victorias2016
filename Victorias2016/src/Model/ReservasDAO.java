@@ -37,10 +37,13 @@ public class ReservasDAO {
         Reservas reservas;
         try {
             if (mes > mn) {
+//                System.out.println("1");
                 sql = "SELECT * FROM reservas_habitaciones WHERE   MONTH(fecha_salida) >= " + mes + "";
             } else if (mes < mn) {
+                System.out.println("2");
                 sql = "SELECT * FROM reservas_habitaciones WHERE  MONTH(fecha_llegada) <= " + mes + "";
             } else {
+                System.out.println("3");
                 sql = "SELECT * FROM reservas_habitaciones";
             }
             pstm = cn.prepareStatement(sql);
@@ -56,6 +59,7 @@ public class ReservasDAO {
                 reservas.setPersonas(rs.getInt("personas"));
                 listaReservas.add(reservas);
             }
+            
         } catch (Exception e) {
             System.out.println("error" + e + " " + getClass());
         }
